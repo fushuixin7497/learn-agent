@@ -1,0 +1,9 @@
+[project]
+name = "lesson-06"
+version = "0.1.0"
+description = "Factor 5: Graceful Degradation —— 失败时降级而非崩溃的 Agent"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.28.1",
+]
