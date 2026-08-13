@@ -36,6 +36,7 @@ from context_manager import ContextManager, estimate_messages_tokens
 from tools import get_tools, execute_tool, ENABLE_MISLEADING_TOOL, TOOL_REGISTRY
 from degradation import (
     DegradationState,
+    MAX_NONSENSE_RETRIES,
     is_degradation_enabled,
     should_force_degradation,
     maybe_degrade_tool_result,
