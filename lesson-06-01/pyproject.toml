@@ -1,0 +1,8 @@
+[project]
+name = "lesson-06-01"
+version = "0.1.0"
+description = "轻量版天气查询与优雅降级示例"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27.0",
+]
