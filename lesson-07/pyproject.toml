@@ -1,0 +1,9 @@
+[project]
+name = "lesson-07"
+version = "0.1.0"
+description = "Factor 6: Least-Privilege Tooling —— 最小权限 Agent"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.28.1",
+]
