@@ -81,7 +81,7 @@ fast path 没命中 → 交给可插拔的 `classifier`（生产中是 LLM 判�
 python3 permission_models.py
 ```
 
-脚本把**同一批工具调用**依次放在光谱四个档位上跑，然后单独演示失败策略。关注三个对比：
+脚本把**同一批工具调用**依次放在光谱四个档位上跑，然后单独演示失败策略。运行时会**真实地在终端询问你**（共 4 次：CONFIRM 两次、ALLOWLIST 一次、AUTO 一次），输入 `y` 批准、`n` 拒绝。关注三个对比：
 
 1. **CONFIRM vs ALLOWLIST**：注意第二个 `write_file` —— CONFIRM 下又问了一次，ALLOWLIST 下直接 `by=session_allowlist` 放行。这就是"会话白名单"省掉的打断。
 2. **AUTO 的审计日志 `by=` 列**：`fast_path` / `slow_path` / `user` 一目了然 —— 你可以精确回答"这次放行是谁拍的板"。

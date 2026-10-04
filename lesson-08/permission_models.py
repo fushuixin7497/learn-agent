@@ -296,7 +296,7 @@ CALLS = [
 ]
 
 
-def demo_mode(mode: Mode, gate_kwargs: Optional[Dict] = None, approve_all: bool = True):
+def demo_mode(mode: Mode, gate_kwargs: Optional[Dict] = None):
     gate = PermissionGate(mode, **(gate_kwargs or {}))
     print(f"\n{'='*64}\n模式: {mode.value.upper()}"
           + (f"  (policy={gate.failure_policy.value}, timeout={gate.timeout_s}s)"
@@ -306,9 +306,11 @@ def demo_mode(mode: Mode, gate_kwargs: Optional[Dict] = None, approve_all: bool 
         decision = gate.request(tool, args)
         line = f"  {tool:15s} {str(args)[:40]:42s} -> {decision.value}"
         if decision == Decision.ASK:
-            # 模拟用户在终端输入 y/n
-            line += f"  (用户输入: {'y' if approve_all else 'n'})"
-            gate.respond(tool, args, approved=approve_all)
+            # 真实交互：阻塞等待用户在终端输入 y/n
+            answer = input(f"    允许 {tool} {args}? (y/n) ")
+            approved = answer.strip().lower() in ("y", "yes", "是")
+            line += f"  (用户输入: {answer.strip() or '(空)'} -> {'批准' if approved else '拒绝'})"
+            gate.respond(tool, args, approved=approved)
         print(line)
     print(gate.audit.report())
 
